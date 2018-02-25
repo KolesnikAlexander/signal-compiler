@@ -1,5 +1,7 @@
 package program.lexer;
 
+import java.util.Arrays;
+
 public class Characters {
     public static boolean isDigit(Character c){
         return Tables.digits.contains(c);

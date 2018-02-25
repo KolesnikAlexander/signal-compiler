@@ -7,7 +7,6 @@ import static program.lexer.Lexer.State.*;
 public class Lexer {
     enum State {
         INP,
-        OUT,
         CNS,
         WRD,
         BCOM,
@@ -15,20 +14,20 @@ public class Lexer {
         ECOM,
         ERR,
         EXIT,
-        CHECK
+        CHECK,
+        DELIM;
     }
     private static State state = INP;
     private static Character c; //current character
+    private static String buffer ="";
 
     public static void run(){
-
         while (state != EXIT) {
             switch (state) {
                 case INP:
                     inp();
                     break;
-                case OUT:
-                    out();
+                case EXIT:
                     break;
                 case CHECK:
                     check();
@@ -48,35 +47,15 @@ public class Lexer {
                 case ECOM:
                     ecom();
                     break;
+                case DELIM:
+                    delim();
+                    break;
                 case ERR:
                     err();
                     break;
             }
         }
-    }
-
-    private static void err() {
-
-    }
-
-    private static void ecom() {
-
-    }
-
-    private static void com() {
-
-    }
-
-    private static void bcom() {
-
-    }
-
-    private static void wrd() {
-
-    }
-
-    private static void cns() {
-
+        System.out.println("State: "+state.name()+". Last character: "+c);
     }
 
     private static void inp() {
@@ -89,7 +68,10 @@ public class Lexer {
     }
 
     private static void check() {
-        if(Characters.isWhitespace(c)){
+        if (c == null){ //eof
+            state = EXIT;
+        }
+        else if(Characters.isWhitespace(c)){
             state = INP;
         }
         else if(Characters.isDigit(c)){
@@ -102,17 +84,61 @@ public class Lexer {
             state = BCOM;
         }
         else if(Characters.isDelemiter(c)){
-            state = OUT;
-            // TODO: 25.02.18 FILL OUT INFO
-        }
-        else if (c == null){ //eof
-            state = EXIT;
+            state = DELIM;
         }
         else{ //er
-            state = OUT;
-            // TODO: 25.02.18 FILL OUT INFO
+            state = ERR;
         }
         return;
 
+    }
+    private static void cns() {
+        System.out.println("State: "+state.name());
+        buffer+=c;
+        c = Reader.read();
+        while ((c!=null)&&(Characters.isDigit(c))){
+            buffer+=c;
+            c = Reader.read();
+        }
+        // TODO: 25.02.18 CONST OUT
+        System.out.println("I read: "+buffer);
+        state = CHECK;
+    }
+
+    private static void wrd() {
+        System.out.println("State: "+state.name());
+        state = EXIT;
+
+    }
+
+    private static void bcom() {
+        System.out.println("State: "+state.name());
+        state = EXIT;
+
+    }
+
+    private static void com() {
+        System.out.println("State: "+state.name());
+        state = EXIT;
+
+    }
+
+
+    private static void ecom() {
+        System.out.println("State: "+state.name());
+        state = EXIT;
+
+    }
+
+    private static void delim() {
+        System.out.println("Delimiter found: "+c);
+        // TODO: 25.02.18 OUT DELIMITER
+        c = Reader.read();
+        state = CHECK;
+    }
+
+    private static void err() {
+        System.out.println("State: "+state.name());
+        state = EXIT;
     }
 }
