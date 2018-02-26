@@ -6,8 +6,8 @@ public class Reader {
     private static String filePath;
     private static File file;
     private static java.io.Reader reader;
-    public static int posX = 0;
-    public static int posY = 0;
+    public static int row = 0;
+    public static int line = 0;
     public static boolean wasBackSlashN = true;
 
     public static void init(String filePath){
@@ -38,7 +38,6 @@ public class Reader {
             return null;
         else{
             setPosition((char)val);
-            System.out.println("X: "+posX+", Y: "+posY+", symbol: "+val);
             return new Character((char)val);
         }
 
@@ -47,12 +46,12 @@ public class Reader {
 
     private static void setPosition(char val) {
         if(wasBackSlashN){
-            posX = 1;
-            posY++;
+            row = 1;
+            line++;
             wasBackSlashN = false;
         }
         else
-            posX++;
+            row++;
 
         if (val == '\n'){
             wasBackSlashN = true;

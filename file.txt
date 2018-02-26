@@ -1,2 +1,13 @@
-123;
+   123;
 5
+$
+    123
+   ABC AB ABCD; AB (* ABC0  123 *)
+(*123*)
+   PROGRAM MAIN;
+   CONST
+   A = 123;
+   B = 17;
+   C = 12 , 4
+   D = 12 $EXP(4)
+   E = 12 $ EXP (4)
