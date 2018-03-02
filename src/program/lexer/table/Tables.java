@@ -1,4 +1,4 @@
-package program.lexer;
+package program.lexer.table;
 
 
 import java.util.*;
@@ -22,6 +22,8 @@ public class Tables {
     public static Map<Integer, TableCell> constants = new HashMap<>();
     public static Map<Integer, TableCell> identifiers = new HashMap<>();
     public static List<Lexeme> lexemes = new ArrayList<>(50);
+    public static List<Error> errors = new ArrayList<>();
+
 
     public static void initTables(){
        //letters

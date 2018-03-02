@@ -1,9 +1,12 @@
 package program.lexer;
 
 import program.Reader;
+import program.lexer.table.Error;
+import program.lexer.table.Lexeme;
+import program.lexer.table.TableCell;
 
 import static program.lexer.Lexer.State.*;
-import static program.lexer.Tables.*;
+import static program.lexer.table.Tables.*;
 
 public class Lexer {
     enum State {
@@ -78,7 +81,6 @@ public class Lexer {
                     break;
             }
         }
-        System.out.println("State: "+state.name()+". Last character: "+c);
     }
 
     private static void inp() {
@@ -211,7 +213,8 @@ public class Lexer {
     }
 
     private static void exitErr() {
-        System.out.println("Comment bracket is not closed");
+        errors.add(new Error(line,row,
+                "Comment bracket is not closed"));
     }
 
 
@@ -244,7 +247,8 @@ public class Lexer {
     }
 
     private static void astErr() {
-        System.out.println("Asterisk may be a part of a comment operator only: (* comment *)");
+        errors.add(new Error(line,row,
+                "Asterisk may be a part of a comment operator only: (* comment *)"));
     }
 
     private static void expD() {
@@ -280,7 +284,6 @@ public class Lexer {
         else{
             errExp();
             state = CHECK;
-
         }
     }
 
@@ -298,7 +301,8 @@ public class Lexer {
     }
 
     private static void errExp() {
-        System.out.println("'"+buffer+"' is not allowed. Expected to be '$EXP'"+", "+line+":"+row);
+        errors.add(new Error(line,row,
+                "'"+buffer+"' is not allowed. Expected to be '$EXP'"));
     }
 
     private static void delim() {
@@ -320,6 +324,7 @@ public class Lexer {
     }
 
     private static void erErr() {
-        System.out.println("Unknown symbol: "+c+", "+line+":"+row);
+        errors.add(new Error(line,row,
+                "Unknown symbol: "+c));
     }
 }

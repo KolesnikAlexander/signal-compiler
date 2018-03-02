@@ -1,4 +1,4 @@
-package program.lexer;
+package program.lexer.table;
 
 import java.util.Objects;
 

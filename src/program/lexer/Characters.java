@@ -1,6 +1,6 @@
 package program.lexer;
 
-import java.util.Arrays;
+import program.lexer.table.Tables;
 
 public class Characters {
     public static boolean isDigit(Character c){
