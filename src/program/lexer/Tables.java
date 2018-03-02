@@ -87,14 +87,14 @@ public class Tables {
         singleDelim.put(3,new TableCell(",","S-DELIM"));
         singleDelim.put(4,new TableCell(";","S-DELIM"));
         singleDelim.put(5,new TableCell("\'","S-DELIM"));
-        singleDelim.put(6,new TableCell("$","S-DELIM"));
         singleDelim.put(7,new TableCell("=","S-DELIM"));
+
+        multDelim.put(301,new TableCell("$EXP","M-DELIM"));
 
         keyWords.put(401, new TableCell("PROGRAM","KEY"));
         keyWords.put(402, new TableCell("CONST","KEY"));
         keyWords.put(403, new TableCell("BEGIN","KEY"));
         keyWords.put(404, new TableCell("END","KEY"));
-        keyWords.put(405, new TableCell("EXP","KEY"));
     }
 
     public static Integer getKeyByValue(Map<Integer, TableCell> table, TableCell cell){

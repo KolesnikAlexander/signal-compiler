@@ -14,6 +14,10 @@ public class Lexer {
         COM,
         ECOM,
         AST,
+        EXP_D,
+        EXP_E,
+        EXP_X,
+        EXP_P,
         ER,
         EXIT,
         CHECK,
@@ -54,6 +58,18 @@ public class Lexer {
                 case AST:
                     ast();
                     break;
+                case EXP_D:
+                    expD();
+                    break;
+                case EXP_E:
+                    expE();
+                    break;
+                case EXP_X:
+                    expX();
+                    break;
+                case EXP_P:
+                    expP();
+                    break;
                 case DELIM:
                     delim();
                     break;
@@ -64,8 +80,6 @@ public class Lexer {
         }
         System.out.println("State: "+state.name()+". Last character: "+c);
     }
-
-
 
     private static void inp() {
         c = Reader.read();
@@ -100,6 +114,9 @@ public class Lexer {
         else if(c.equals('*')){
             state = AST;
         }
+        else if(c.equals('$')){
+            state = EXP_D;
+        }
         else if(Characters.isDelemiter(c)){
             state = DELIM;
         }
@@ -130,7 +147,6 @@ public class Lexer {
             lexemes.add(new Lexeme(constCount, line, row));
             constCount++;
         }
-        buffer = "";
     }
 
     private static void wrd() {
@@ -149,20 +165,17 @@ public class Lexer {
         Integer key = getKeyByValue(keyWords, new TableCell(buffer, "KEY"));
         if (key != null){
             lexemes.add(new Lexeme(key, line, row));
-            buffer = "";
             return;
         }
         key = getKeyByValue(identifiers, new TableCell(buffer, "ID"));
         if (key != null){
             lexemes.add(new Lexeme(key, line, row));
-            buffer = "";
             return;
         }
         else{
             identifiers.put(identifierCount, new TableCell(buffer,"ID"));
             lexemes.add(new Lexeme(identifierCount, line, row));
             identifierCount++;
-            buffer = "";
             return;
         }
 
@@ -214,7 +227,6 @@ public class Lexer {
             return;
         }
         else if(c.equals(')')){
-            buffer = "";
             state = INP;
             return;
         }
@@ -235,6 +247,60 @@ public class Lexer {
         System.out.println("Asterisk may be a part of a comment operator only: (* comment *)");
     }
 
+    private static void expD() {
+        buffer+=c;
+        c = Reader.read();
+        if(c.equals('E')){
+            state = EXP_E;
+        }
+        else{
+            state = CHECK;
+            errExp();
+        }
+    }
+
+    private static void expE() {
+        buffer+=c;
+        c = Reader.read();
+        if(c.equals('X')){
+            state = EXP_X;
+        }
+        else{
+            state = CHECK;
+            errExp();
+        }
+    }
+
+    private static void expX() {
+        buffer+=c;
+        c = Reader.read();
+        if(c.equals('P')){
+            state = EXP_P;
+        }
+        else{
+            errExp();
+            state = CHECK;
+
+        }
+    }
+
+    private static void expP() {
+        buffer+=c;
+        expDOut();
+        c = Reader.read();
+        state = CHECK;
+
+    }
+
+    private static void expDOut() {
+        Integer key = getKeyByValue(multDelim, new TableCell(buffer, "M-DELIM"));
+        lexemes.add(new Lexeme(key, line, row));
+    }
+
+    private static void errExp() {
+        System.out.println("'"+buffer+"' is not allowed. Expected to be '$EXP'"+", "+line+":"+row);
+    }
+
     private static void delim() {
         buffer+=c;
         singleDelimOut();
@@ -245,11 +311,15 @@ public class Lexer {
     private static void singleDelimOut(){
         Integer key = getKeyByValue(singleDelim, new TableCell(buffer, "S-DELIM"));
         lexemes.add(new Lexeme(key, line, row));
-        buffer = "";
     }
 
     private static void er() {
+        erErr();
+        c = Reader.read();
+        state = CHECK;
+    }
 
-        state = EXIT;
+    private static void erErr() {
+        System.out.println("Unknown symbol: "+c+", "+line+":"+row);
     }
 }

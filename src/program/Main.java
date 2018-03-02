@@ -74,6 +74,9 @@ public class Main {
         if((0<=code) && (code <= 255)){
             return Tables.singleDelim.get(code);
         }
+        else if((301<=code) && (code <= 400)){
+            return Tables.multDelim.get(code);
+        }
         else if((401<=code) && (code <= 500)){
             return Tables.keyWords.get(code);
         }
