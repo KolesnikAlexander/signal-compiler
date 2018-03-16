@@ -6,13 +6,15 @@ import program.lexer.table.Tables;
 import java.util.Scanner;
 
 public class Main {
-    private static String FILE_NAME = "file.txt";
+    private static String FILE = "file.txt";
+    private static String FALSE = "falseTest.txt";
+    private static String TRUE = "trueTest.txt";
 
     public static void main(String[] args) {
         String path = inp();
 
         Tables.initTables();
-        Reader.init(path);
+        Reader.init(TRUE);
         Lexer.run();
 
         Out.printErrors();

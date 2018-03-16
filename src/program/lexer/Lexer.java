@@ -135,8 +135,23 @@ public class Lexer {
             buffer+=c;
             c = Reader.read();
         }
-        cnsOut();
+        if(c!=null && Characters.isLetter(c)){
+            cnsErr();
+            while ((c!=null)&&(Characters.isLetter(c))){
+                c = Reader.read();
+            }
+        }
+        else
+            cnsOut();
+
         state = CHECK;
+//        cnsOut();
+//        state = CHECK;
+    }
+
+    private static void cnsErr() {
+        errors.add(new Error(line,row,
+                "Identifier cannot start from digit"));
     }
 
     private static void cnsOut() {

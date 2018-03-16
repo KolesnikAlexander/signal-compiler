@@ -1,0 +1,37 @@
+(*---comments---*)
+
+(* comment1*)
+(**comment2 MAIN ; *)
+(***)
+(****)
+*
+*)
+
+(*---MULTI-SYMBOL DELIMITER---*)
+5 $ EXP
+6 $EXP
+
+(*---KEYWORDS---*)
+PROGRAMMAIN
+ENDPROGRAM
+END;PROGRAM
+BEGIN MAIN
+BEGIN END123 END.123
+
+LABE$LL
+LABE2*LL
+
+(*---UNKNOWN SYMBOLS---*)
++
+-
+a
+abc
+abC
+aBc
+Abc
+ABc
+Ё
+4ABCLOLOLOL SD;
+
+(*---NON-CLOSED BRACKET---*)
+(** lastComment
