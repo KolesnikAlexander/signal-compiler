@@ -1,0 +1,11 @@
+program/lexer/Lexer$1.class
+program/lexer/table/TableCell.class
+program/Main.class
+program/lexer/table/Lexeme.class
+program/Out.class
+program/lexer/Lexer$State.class
+program/lexer/table/Tables.class
+program/Reader.class
+program/lexer/table/Error.class
+program/lexer/Lexer.class
+program/lexer/Characters.class

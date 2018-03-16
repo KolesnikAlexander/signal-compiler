@@ -1,0 +1,104 @@
+File path: Lexer errors: 21
+7:1   Asterisk may be a part of a comment operator only: (* comment *)
+8:1   Asterisk may be a part of a comment operator only: (* comment *)
+11:3   '$' is not allowed. Expected to be '$EXP'
+21:5   '$' is not allowed. Expected to be '$EXP'
+22:6   Asterisk may be a part of a comment operator only: (* comment *)
+25:1   Unknown symbol: +
+26:1   Unknown symbol: -
+27:1   Unknown symbol: a
+28:1   Unknown symbol: a
+28:2   Unknown symbol: b
+28:3   Unknown symbol: c
+29:1   Unknown symbol: a
+29:2   Unknown symbol: b
+30:1   Unknown symbol: a
+30:3   Unknown symbol: c
+31:2   Unknown symbol: b
+31:3   Unknown symbol: c
+32:3   Unknown symbol: c
+33:1   Unknown symbol: Ё
+34:1   Identifier cannot start from digit
+37:1   Comment bracket is not closed
+LEXEMES: 
+---------------
+8:2    1     S-DELIM )
+11:1   501   CNS     5
+11:5   1001  ID      EXP
+12:1   502   CNS     6
+12:3   301   M-DELIM $EXP
+15:1   1002  ID      PROGRAMMAIN
+16:1   1003  ID      ENDPROGRAM
+17:1   404   KEY     END
+17:4   4     S-DELIM ;
+17:5   401   KEY     PROGRAM
+18:1   403   KEY     BEGIN
+18:7   1004  ID      MAIN
+19:1   403   KEY     BEGIN
+19:7   1005  ID      END123
+19:14  404   KEY     END
+19:17  2     S-DELIM .
+19:18  503   CNS     123
+21:1   1006  ID      LABE
+21:6   1007  ID      LL
+22:1   1008  ID      LABE2
+22:7   1007  ID      LL
+29:3   1009  ID      C
+30:2   1010  ID      B
+31:1   1011  ID      A
+32:1   1012  ID      AB
+34:13  1013  ID      SD
+34:15  4     S-DELIM ;
+
+SINGLE DELIMITERS
+---------------
+Code Type     Value
+---------------
+0    S-DELIM  (
+1    S-DELIM  )
+2    S-DELIM  .
+3    S-DELIM  ,
+4    S-DELIM  ;
+5    S-DELIM  '
+7    S-DELIM  =
+
+MULTI DELIMITERS
+---------------
+Code Type     Value
+---------------
+301  M-DELIM  $EXP
+
+KEYWORDS
+---------------
+Code Type     Value
+---------------
+401  KEY      PROGRAM
+402  KEY      CONST
+403  KEY      BEGIN
+404  KEY      END
+
+CONSTANTS: 
+---------------
+Code Type     Value
+---------------
+501  CNS      5
+502  CNS      6
+503  CNS      123
+
+IDENTIFIERS: 
+---------------
+Code Type     Value
+---------------
+1001 ID       EXP
+1002 ID       PROGRAMMAIN
+1003 ID       ENDPROGRAM
+1004 ID       MAIN
+1005 ID       END123
+1006 ID       LABE
+1007 ID       LL
+1008 ID       LABE2
+1009 ID       C
+1010 ID       B
+1011 ID       A
+1012 ID       AB
+1013 ID       SD
