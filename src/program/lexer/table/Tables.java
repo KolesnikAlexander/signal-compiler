@@ -13,6 +13,10 @@ public class Tables {
     public static List<Character> whitespaces = new ArrayList<>(5);
     public static List<Character> delimiters = new ArrayList<>(10);
 
+
+    //ASCII CHARACTER TABLE
+    public static int[] ascii = new int[128];
+
     //INPUT TABLES
     public static Map<Integer, TableCell> singleDelim = new HashMap<>();
     public static Map<Integer, TableCell> multDelim = new HashMap<>();
@@ -26,6 +30,34 @@ public class Tables {
 
 
     public static void initTables(){
+//ascii
+        //letters
+        for(int i = 65; i <= 90;i++){
+            ascii[i] = 2;
+        }
+
+        //digits
+        for(int i = 48; i <= 57;i++){
+            ascii[i] = 1;
+        }
+
+        //whitespaces
+        ascii[8] = 4;
+        ascii[9] = 4;
+        ascii[10] = 4;
+        ascii[13] = 4;
+        ascii[32] = 4;
+
+        //single delimiters
+        ascii[46] = 3;//.
+        ascii[40] = 3;//(
+        ascii[41] = 3;//)
+        ascii[44] = 3;//,
+        ascii[59] = 3;//;
+        ascii[39] = 3;//'
+        ascii[36] = 3;//$
+        ascii[61] = 3;//=
+//ascii end
        //letters
         letters.add('A');
         letters.add('B');
