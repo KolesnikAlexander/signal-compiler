@@ -206,7 +206,7 @@ public class Lexer {
             return;
         }
         else {
-            singleDelimOut();
+            sdelOut();
             state = CHECK;
         }
     }
@@ -274,7 +274,7 @@ public class Lexer {
         }
         else{
             state = CHECK;
-            errExp();
+            expErr();
         }
     }
 
@@ -286,7 +286,7 @@ public class Lexer {
         }
         else{
             state = CHECK;
-            errExp();
+            expErr();
         }
     }
 
@@ -297,7 +297,7 @@ public class Lexer {
             state = EXP_P;
         }
         else{
-            errExp();
+            expErr();
             state = CHECK;
         }
     }
@@ -315,19 +315,19 @@ public class Lexer {
         lexemes.add(new Lexeme(key, line, row));
     }
 
-    private static void errExp() {
+    private static void expErr() {
         errors.add(new Error(line,row,
                 "'"+buffer+"' is not allowed. Expected to be '$EXP'"));
     }
 
     private static void delim() {
         buffer+=c;
-        singleDelimOut();
+        sdelOut();
         c = Reader.read();
         state = CHECK;
     }
 
-    private static void singleDelimOut(){
+    private static void sdelOut(){
         Integer key = getKeyByValue(singleDelim, new TableCell(buffer, "S-DELIM"));
         lexemes.add(new Lexeme(key, line, row));
     }
