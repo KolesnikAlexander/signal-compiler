@@ -69,7 +69,7 @@ public class Out {
         }
     }
 
-    private static TableCell tableCellByCode(int code) {
+    public static TableCell tableCellByCode(int code) {
         if((0<=code) && (code <= 255)){
             return Tables.singleDelim.get(code);
         }
