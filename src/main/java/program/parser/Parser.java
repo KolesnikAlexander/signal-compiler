@@ -281,20 +281,128 @@ public class Parser {
             return new Result(true, emptyNode );
         }
     }
-    public static int c;
+
     private static Result constantDeclaration() {
         Node root = new Node(false,"constant-declaration");
+
         Result res = constantIdentifier();
         root.getBranches().add(res.node);
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
 
-        return new Result(res.isSuccessful, root);
-//        if(res.isSuccessful)
-//
-//        c++;
-//        if(c == 3)
-//            return new Result(false, new Node(false,"constant-declaration1"));
-//
-//        return new Result(true, new Node(false,"constant-declaration2"));
+        res = EQUALS();
+        if(res.node != null)
+            root.getBranches().add(res.node);
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
+
+        res = constant();
+        root.getBranches().add(res.node);
+
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
+
+        return new Result(true, root);
+    }
+
+    private static Result constant() {
+        Node root = new Node(false,"constant");
+
+        Result res = QUOTE();
+        if(res.node != null)
+            root.getBranches().add(res.node);
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
+
+        res = complexNumber();
+        root.getBranches().add(res.node);
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
+
+        res = QUOTE();
+        if(res.node != null)
+            root.getBranches().add(res.node);
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
+
+        return new Result(true, root);
+    }
+
+    private static Result complexNumber() {
+        Node root = new Node(false,"complex-number");
+
+        Result res = leftPart();
+        root.getBranches().add(res.node);
+        return new Result(true, root);
+
+    }
+
+    private static Result leftPart() {
+        Node node = new Node(false,"left-part");
+        Iterator<Lexeme> lexIterCopy = copyLexIter();
+        Result res = unsignedInteger();
+        if (res.isSuccessful){
+            node.getBranches().add(res.node);
+            return new Result(true, node);
+        }
+        else{
+            return new Result(true,new Node(false,"empty"));
+        }
+    }
+
+    private static Result unsignedInteger() {
+        Node node = new Node(false,"unsigned-integer");
+
+        l = readLex();
+
+        if((l == null) || !Lexemes.isConstant(l)){
+            System.err.println("CONSTANT EXPECTED");
+            return new Result(false, node);
+        }
+        else{
+            Node idValueNode = new Node(true, l.getCode().toString());
+            node.getBranches().add(idValueNode);
+            return new Result(true, node);
+        }
+    }
+
+    private static Result QUOTE() {
+        int lexCode = 5;
+        l = readLex();
+
+        if(l == null){
+            return new Result(false, null); //empty file
+        }
+        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
+            return new Result(false, null);
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            return new Result(true, node);
+        }
+    }
+
+    private static Result EQUALS() {
+        int lexCode = 7;
+        l = readLex();
+
+        if(l == null){
+            return new Result(false, null); //empty file
+        }
+        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
+//            err("\"=\" expected");
+            return new Result(false, null);
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            return new Result(true, node);
+        }
     }
 
     private static Result constantIdentifier() {
@@ -360,25 +468,6 @@ public class Parser {
         }
     }
 
-//    private static Result procedureIdentifier() {
-//        Node node = new Node(false,"procedure-identifier");
-//        Node idNode = new Node(false,"identifier");
-//        node.getBranches().add(idNode);
-//
-//        l = readLex();
-//
-//        if((l == null) || !Lexemes.isIdentifier(l)){
-//            err("Identifier expected");
-//            return new Result(false, node);
-//        }
-//        else{
-//            //OUT
-//
-//            Node idValueNode = new Node(true, l.getCode().toString());
-//            idNode.getBranches().add(idValueNode);
-//            return new Result(true, node);
-//        }
-//    }
     private static Result procedureIdentifier() {
         Node node = new Node(false,"procedure-identifier");
         Result res = identifier();
