@@ -34,7 +34,9 @@ public class Parser {
 
     private static boolean signalProgram(){
         tree =  new Node(false,"signal-program");
-        return program().isSuccessful;
+        Result res = program();
+        tree.getBranches().add(res.node);
+        return res.isSuccessful;
     }
 
     private static void err(String message){
@@ -57,32 +59,32 @@ public class Parser {
         if(!res.isSuccessful){
             return new Result(false, root);
         }
-
         root.getBranches().add(res.node);
+
         res = procedureIdentifier();
         if(!res.isSuccessful){
             return new Result(false, root);
         }
-
         root.getBranches().add(res.node);
+
         res = SEMICOLON_KEY();
         if(!res.isSuccessful){
             return new Result(false, root);
         }
-
         root.getBranches().add(res.node);
+
         res = block();
         if(!res.isSuccessful){
             return new Result(false, root);
         }
-
         root.getBranches().add(res.node);
+
         res = DOT_KEY();
         if(!res.isSuccessful){
             return new Result(false, root);
         }
-
         root.getBranches().add(res.node);
+
         return new Result(true, root);
 
     }
@@ -123,8 +125,6 @@ public class Parser {
             return new Result(false, null); //empty file
         }
         else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            //ERR EOF
-//            System.out.println("ERROR!");
             err("\"PROGRAM\" expected");
             return new Result(false, null);
         }
@@ -145,8 +145,6 @@ public class Parser {
         l = readLex();
 
         if((l == null) || !Lexemes.isIdentifier(l)){
-            //ERR EOF
-//            System.out.println("Identifier expected");
             err("Identifier expected");
 
             return new Result(false, null);
@@ -162,20 +160,5 @@ public class Parser {
             node.getBranches().add(idNode);
             return new Result(true, node);
         }
-
-
-//
-//        Lexeme id = getFirstId();
-//        if (id == null){
-//            //ERR EOF
-//            System.out.println("ERROR!");
-//            return false;
-//        }
-//        else{
-//            //OUT
-//            parent.branches.add(new Node("PROGRAM"));
-//            System.out.println("PROGRAM FOUND!");
-//            return true;
-//        }
     }
 }

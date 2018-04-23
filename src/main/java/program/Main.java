@@ -28,6 +28,7 @@ public class Main {
 
         Parser.run();
         ParserOut.outErrors();
+        ParserOut.treeOut();
     }
 
     private static String inp() {
