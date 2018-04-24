@@ -5,14 +5,14 @@ import static program.parser.Parser.tree;
 
 public class ParserOut {
     public static void outErrors(){
-        System.out.println("Parser errors: "+Parser.errors.size());
+        System.out.println("Parser errors: "+Parser.errors.size()+"\n");
         for (Error error : Parser.errors) {
             System.out.println(error.getLine()+":"+error.getRow()+" "+error.getMessage());
         }
     }
 
     public static void treeOut(){
-        System.out.println("Parser errors: "+Parser.errors.size());
+
         printNode(tree, 0);
     }
 

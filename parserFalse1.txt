@@ -1,4 +1,4 @@
-PROGRAM HELLO;
+PROGRAM 5;
 CONST A = '5, 8';
  C='5, 89';
 BEGIN
