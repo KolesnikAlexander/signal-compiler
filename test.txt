@@ -1,4 +1,5 @@
 PROGRAM HELLO;
-CONST L = '5'
+CONST A = '5, 8' C='6, 4'
+(*CONST A = '10' B = ''*)
 BEGIN
 END.

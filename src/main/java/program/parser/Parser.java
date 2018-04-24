@@ -42,6 +42,14 @@ public class Parser {
         return copy;
     }
 
+    private static Iterator<Lexeme> copyLexIterMinusOne(){
+        Iterator<Lexeme> copy = Tables.lexemes.iterator();
+        for (int i = 0; i < lexCount-1; i++){
+            copy.next();
+        }
+        return copy;
+    }
+
     private static Lexeme readLex(){
         lexCount++;
         if (!lexIter.hasNext())
@@ -234,6 +242,7 @@ public class Parser {
         Node node = new Node(false, "declarations");
         Result res = constantDeclarations();
         node.getBranches().add(res.node);
+        System.err.println("DECLARATIONS: "+l);
 
         return new Result(res.isSuccessful, node);
     }
@@ -255,7 +264,7 @@ public class Parser {
         if(res.node != null)
             root.getBranches().add(res.node);
         if(!res.isSuccessful){
-           // lexIter = savedIter;
+//            lexIter = savedIter;
             return new Result(false, root);
         }
 
@@ -270,6 +279,7 @@ public class Parser {
         Iterator<Lexeme> lexIterCopy = copyLexIter();
 
         Result res = constantDeclaration();
+
         root.getBranches().add(res.node);
         if(res.isSuccessful){
             res = constantDeclarationsList();
@@ -288,6 +298,7 @@ public class Parser {
         Result res = constantIdentifier();
         root.getBranches().add(res.node);
         if(!res.isSuccessful){
+            System.err.println("KEK"+l);
             return new Result(false, root);
         }
 
@@ -299,12 +310,14 @@ public class Parser {
         }
 
         res = constant();
+        System.err.println("REWS: "+l);
         root.getBranches().add(res.node);
 
         if(!res.isSuccessful){
             return new Result(false, root);
         }
 
+//        System.err.println("ROOT: "+root.getBranches().get(0));
         return new Result(true, root);
     }
 
@@ -331,6 +344,8 @@ public class Parser {
             return new Result(false, root);
         }
 
+        System.err.println("AFTER QUOTE: "+l);
+
         return new Result(true, root);
     }
 
@@ -339,33 +354,153 @@ public class Parser {
 
         Result res = leftPart();
         root.getBranches().add(res.node);
+
+        res = rightPart();
+        root.getBranches().add(res.node);
         return new Result(true, root);
 
     }
 
     private static Result leftPart() {
         Node node = new Node(false,"left-part");
-        Iterator<Lexeme> lexIterCopy = copyLexIter();
+
         Result res = unsignedInteger();
-        if (res.isSuccessful){
+        Iterator<Lexeme> iterCopy = copyLexIter();
+
+        if(res.isSuccessful){
+            System.err.println("SUCCESS: "+l);
             node.getBranches().add(res.node);
-            return new Result(true, node);
         }
         else{
-            return new Result(true,new Node(false,"empty"));
+            System.err.println("UNSUCCESS: "+l);
+                lexIter = iterCopy;
+
+            node.getBranches().add(new Node(false, "empty"));
         }
+        return new Result(true, node);
+
+
+
+//        node.getBranches().add(new Node(false,"empty"));
+//        return new Result(true, node);
+
+
+//        Node node = new Node(false,"left-part");
+//        Iterator<Lexeme> lexIterCopy = copyLexIter();
+//        System.err.println("COMPLEX NUMBER LEX: "+l);
+//        Result res = unsignedInteger();
+//        if (res.isSuccessful){
+//            node.getBranches().add(res.node);
+//            return new Result(true, node);
+//        }
+//        else{
+//            lexIter = lexIterCopy;
+//            System.err.println("COMPLEX NUMBER LEX111111111111: "+l);
+//
+//            node.getBranches().add(new Node(false,"empty"));
+//            return new Result(true, node);
+//        }
     }
+
+    private static Result rightPart() {
+        Node root = new Node(false,"right-part");
+
+        Result res = COMMA();
+        if(res.node != null)
+            root.getBranches().add(res.node);
+        if(!res.isSuccessful){
+            return new Result(false, root);
+        }
+
+        res = unsignedInteger();
+        if(res.isSuccessful){
+            System.err.println("SUCCESS: "+l);
+            root.getBranches().add(res.node);
+            return new Result(true, root);
+        }
+        else{
+            System.err.println("UNSUCCESS: "+l);
+            root.getBranches().add(new Node(false, "empty"));
+            return new Result(false, root);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//        Result res = rightPartFirstCase();
+//        Iterator<Lexeme> lexIterCopy = copyLexIter();
+//        if(res.isSuccessful){
+//            return new Result(true, res.node);
+//        }else {
+//            Node root = new Node(false,"right-part");
+//            root.getBranches().add(new Node(false, "empty"));
+//            lexIter = lexIterCopy;
+//            return new Result(true, root);
+//        }
+
+//
+//        Iterator<Lexeme> lexIterCopy = copyLexIter();
+//        Result res = unsignedInteger();
+//        if (res.isSuccessful){
+//            node.getBranches().add(res.node);
+//            return new Result(true, node);
+//        }
+//        else{
+//            return new Result(true,new Node(false,"empty"));
+//        }
+    }
+
+//    private static Result rightPartFirstCase() {
+//        Node root = new Node(false,"right-part");
+//        Result res = COMMA();
+//        if(res.node != null)
+//            root.getBranches().add(res.node);
+//        if(!res.isSuccessful){
+//            return new Result(false, root);
+//        }
+//
+//        res = unsignedInteger();
+//
+//        if(res.isSuccessful){
+//            System.err.println("SUCCESS: "+l);
+//            node.getBranches().add(res.node);
+//        }
+//        else{
+//            System.err.println("UNSUCCESS: "+l);
+//            lexIter = iterCopy;
+//
+//            node.getBranches().add(new Node(false, "empty"));
+//        }
+//
+//
+//
+//        root.getBranches().add(res.node);
+//        return new Result(true, root);
+//    }
 
     private static Result unsignedInteger() {
         Node node = new Node(false,"unsigned-integer");
-
         l = readLex();
 
         if((l == null) || !Lexemes.isConstant(l)){
-            System.err.println("CONSTANT EXPECTED");
+//            System.err.println("CONSTANT EXPECTED");
             return new Result(false, node);
+
         }
         else{
+            System.err.println("IS CONSTANT: "+l);
             Node idValueNode = new Node(true, l.getCode().toString());
             node.getBranches().add(idValueNode);
             return new Result(true, node);
@@ -387,7 +522,22 @@ public class Parser {
             return new Result(true, node);
         }
     }
+    private static Result COMMA() {
+        int lexCode = 3;
+        l = readLex();
 
+        if(l == null){
+            return new Result(false, null); //empty file
+        }
+        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
+//            err("\"=\" expected");
+            return new Result(false, null);
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            return new Result(true, node);
+        }
+    }
     private static Result EQUALS() {
         int lexCode = 7;
         l = readLex();
