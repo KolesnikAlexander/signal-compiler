@@ -19,7 +19,7 @@ public class ParserOut {
     public static String tabs(int n){
         String string = "";
         for (int i = 0; i < n; i++){
-            string+="\t";
+            string+="  ";
         }
         return string;
     }

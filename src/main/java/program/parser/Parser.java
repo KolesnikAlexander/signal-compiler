@@ -14,10 +14,9 @@ public class Parser {
     public static List<Error> errors = new ArrayList<>();
     public static Node tree;
     public static Lexeme l;
+    public static Lexeme buffer;
     private static Iterator<Lexeme> lexIter;
-    private static int lexCount;
-
-    private static Iterator<Lexeme> savedIter;
+    public static Node emptyNode = new Node(false, "empty");
 
     static {
         lexIter = Tables.lexemes.iterator();
@@ -27,44 +26,176 @@ public class Parser {
         signalProgram();
     }
 
-    private static void saveLexIter(){
-        savedIter = Tables.lexemes.iterator();
-        for (int i = 0; i < lexCount; i++){
-            savedIter.next();
-        }
-    }
-
-    private static Iterator<Lexeme> copyLexIter(){
-        Iterator<Lexeme> copy = Tables.lexemes.iterator();
-        for (int i = 0; i < lexCount; i++){
-            copy.next();
-        }
-        return copy;
-    }
-
-    private static Iterator<Lexeme> copyLexIterMinusOne(){
-        Iterator<Lexeme> copy = Tables.lexemes.iterator();
-        for (int i = 0; i < lexCount-1; i++){
-            copy.next();
-        }
-        return copy;
-    }
-
-    private static Lexeme readLex(){
-        lexCount++;
+    private static Lexeme getNextLexItem(){
         if (!lexIter.hasNext())
             return null;
         else
             return lexIter.next();
     }
+    private static Lexeme watch(){
+        if(buffer == null)
+            buffer = getNextLexItem();
+        return buffer;
+
+    }
+    private static void readLex(){
+        Lexeme lex = watch();
+        buffer = null;
+        l = lex;
+    }
+
+    private static boolean nullLex(){
+        return l == null;
+    }
+    private static boolean eof(){
+        return (l == null) && (buffer == null) && (!lexIter.hasNext());
+    }
 
     private static boolean signalProgram(){
         tree =  new Node(false,"signal-program");
-        Result res = program();
-        tree.getBranches().add(res.node);
-        return res.isSuccessful;
+        Node program = new Node(false, "program");
+        tree.getBranches().add(program);
+
+        return PROGRAM_KEY(program) && procedureIdentifier(program)
+                && SEMICOLON_KEY(program) && block(program) && DOT_KEY(program);
     }
 
+    private static boolean PROGRAM_KEY(Node parent){
+        readLex();
+        int lexCode = 401;
+
+        if(!l.equals(new Lexeme(lexCode, -1, -1))){
+            err("\"PROGRAM\" expected");
+            return false;
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            parent.getBranches().add(node);
+            return true;
+        }
+    }
+
+    private static boolean procedureIdentifier(Node parent) {
+        Node node = new Node(false,"procedure-identifier");
+        parent.getBranches().add(node);
+        return identifier(node);
+    }
+
+    private static boolean identifier(Node parent) {
+        Node node = new Node(false,"identifier");
+        parent.getBranches().add(node);
+        readLex();
+
+        if(nullLex() || !Lexemes.isIdentifier(l)){
+            err("Identifier expected");
+            return false;
+        }
+        else{
+            //OUT
+            Node idValueNode = new Node(true, l.getCode().toString());
+            node.getBranches().add(idValueNode);
+
+            return true;
+        }
+    }
+    private static boolean SEMICOLON_KEY(Node parent) {
+        int lexCode = 4;
+        readLex();
+
+        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
+            err("\";\" expected");
+            return false;
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            parent.getBranches().add(node);
+            return true;
+        }
+    }
+    private static boolean DOT_KEY(Node parent) {
+        int lexCode = 2;
+        readLex();
+
+        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
+            err("\".\" expected");
+            return false;
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            parent.getBranches().add(node);
+            return true;
+        }
+    }
+    private static boolean block(Node parent) {
+        Node node = new Node(false,"block");
+        parent.getBranches().add(node);
+
+        return declarations(node) && BEGIN_KEY(node) &&
+                statementsList(node) && END_KEY(node);
+    }
+
+    private static boolean declarations(Node parent) {
+        Node nodeDeclarations = new Node(false, "declarations");
+        parent.getBranches().add(nodeDeclarations);
+        Node node = new Node(false, "constant-declarations");
+        nodeDeclarations.getBranches().add(node);
+
+        if (!new Lexeme(402, -1, -1).equals(watch())) {//next is not CONST
+            node.getBranches().add(emptyNode);
+            return true;
+        }
+        return CONST_KEY(node) && constantDeclarationsList(node);
+    }
+
+    private static boolean constantDeclarationsList(Node parent) {
+        Node node = new Node(false, "constant-declarations-list");
+        parent.getBranches().add(node);
+        if (watch() == null || !Lexemes.isIdentifier(watch())){
+            node.getBranches().add(emptyNode);
+            return true;
+        }
+        return constantDeclaration(node); // TODO: 28.04.18
+    }
+
+    private static boolean constantDeclaration(Node parent) { // TODO: 28.04.18
+        Node node = new Node(false, "constant-declaration");
+        parent.getBranches().add(node);
+        return constantIdentifier(node);
+    }
+
+    private static boolean constantIdentifier(Node parent) {
+        Node node = new Node(false, "constant-identifier");
+        return identifier(parent);
+    }
+
+    private static boolean CONST_KEY(Node parent) {
+        readLex();
+        int lexCode = 402;
+
+        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
+            return false;
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            parent.getBranches().add(node);
+            return true;
+        }
+    }
+
+    private static boolean CONSTN_KEY(Node parent) {
+        return true;
+    }
+    private static boolean BEGIN_KEY(Node parent) {
+        return true;
+    }
+
+    private static boolean statementsList(Node parent) {
+        return true;
+    }
+
+    private static boolean END_KEY(Node parent) {
+        return true;
+    }
     private static void err(String message){
         if (l == null){
             Lexeme lexeme = Tables.lexemes.get(Tables.lexemes.size() - 1);
@@ -78,548 +209,6 @@ public class Parser {
     }
 
 
-    private static Result program() {
-        Node root = new Node(false,"program");
 
-        Result res = PROGRAM_KEY();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
 
-        res = procedureIdentifier();
-        root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = SEMICOLON_KEY();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = block();
-        root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = DOT_KEY();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        return new Result(true, root);
-
-    }
-
-    private static Result DOT_KEY() {
-        int lexCode = 2;
-        l = readLex();
-
-        if((l == null) || !l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\".\" expected");
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result SEMICOLON_KEY() {
-        int lexCode = 4;
-        l = readLex();
-
-        if((l == null) || !l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\";\" expected");
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result PROGRAM_KEY(){
-        int lexCode = 401;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\"PROGRAM\" expected");
-            return new Result(false, null);
-        }
-        else{
-            //OUT
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result block() {
-        Node root = new Node(false,"block");
-
-        Result res = declarations();
-        root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = BEGIN_KEY();
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-        root.getBranches().add(res.node);
-
-        res = statementsList();
-        root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-
-        res = END_KEY();
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-        root.getBranches().add(res.node);
-
-        return new Result(true, root);
-
-    }
-
-    private static Result END_KEY() {
-        int lexCode = 404;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\"END\" expected");
-            return new Result(false, null);
-        }
-        else{
-            //OUT
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result statementsList() {
-        Node node =  new Node(false, "statements-list");
-        node.getBranches().add(new Node(false, "empty"));
-        return new Result(true, node );
-    }
-
-    private static Result BEGIN_KEY() {
-        int lexCode = 403;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\"BEGIN\" expected");
-            return new Result(false, null);
-        }
-        else{
-            //OUT
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result declarations() {
-        Node node = new Node(false, "declarations");
-        Result res = constantDeclarations();
-        node.getBranches().add(res.node);
-
-        return new Result(res.isSuccessful, node);
-    }
-
-    private static Result constantDeclarations() {
-        Node root = new Node(false,"constant-declarations");
-        Node emptyNode = new Node(false,"empty");
-        saveLexIter();
-
-        Result res = CONST_KEY();
-        if(!res.isSuccessful){
-            lexIter = savedIter;
-            root.getBranches().add(emptyNode);
-            return new Result(true, root);//empty node
-        }
-        root.getBranches().add(res.node);
-
-        res = constantDeclarationsList();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-//            lexIter = savedIter;
-            return new Result(false, root);
-        }
-
-        return new Result(true, root);
-
-    }
-
-    private static Result constantDeclarationsList() {
-        Node root = new Node(false,"constant-declarations-list");
-        Node emptyNode = new Node(false,"empty");
-
-        Iterator<Lexeme> lexIterCopy = copyLexIter();
-
-        Result res = constantDeclaration();
-
-        root.getBranches().add(res.node);
-        if(res.isSuccessful){
-            res = constantDeclarationsList();
-            root.getBranches().add(res.node);
-            return new Result(true, root);
-        }
-        else {
-            lexIter = lexIterCopy;
-            return new Result(true, emptyNode );
-        }
-    }
-
-    private static Result constantDeclaration() {
-        Node root = new Node(false,"constant-declaration");
-
-        Result res = constantIdentifier();
-        root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = EQUALS();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = constant();
-        root.getBranches().add(res.node);
-
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = SEMICOLON_KEY();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        return new Result(true, root);
-    }
-
-    private static Result constant() {
-        Node root = new Node(false,"constant");
-
-        Result res = QUOTE();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = complexNumber();
-        root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = QUOTE();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-
-        return new Result(true, root);
-    }
-
-    private static Result complexNumber1() {
-        Node root = new Node(false,"complex-number");
-
-        Result res = leftPart();
-        root.getBranches().add(res.node);
-
-        res = rightPart();
-        root.getBranches().add(res.node);
-        return new Result(true, root);
-
-    }
-
-    private static Result complexNumber() {
-        Node root = new Node(false,"complex-number");
-
-        Result res = leftPart();
-        root.getBranches().add(res.node);
-
-        if(res.isSuccessful){
-            root.getBranches().add(res.node);
-            res = rightPart();
-            if(res.isSuccessful){
-                root.getBranches().add(res.node);
-                return new Result(true, root);
-            }
-            else {
-                return new Result(false, root);
-            }
-        }
-        else {
-            return new Result(false, root);
-        }
-
-    }
-
-    private static Result leftPart() {
-        Node node = new Node(false,"left-part");
-
-        Result res = unsignedInteger();
-        Iterator<Lexeme> iterCopy = copyLexIter();
-
-        if(res.isSuccessful){
-
-            node.getBranches().add(res.node);
-            return new Result(true, node);
-
-        }
-        else{
-                lexIter = iterCopy;
-            //node.getBranches().add(new Node(false, "empty"));
-            return new Result(false, node);
-
-        }
-    }
-    private static Result rightPartExp() {
-        Node root = new Node(false,"right-part");
-
-        Result res = EXP();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = BRACKET();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = unsignedInteger();
-        if(res.isSuccessful){
-            root.getBranches().add(res.node);
-            return new Result(true, root);
-        }
-        else{
-            root.getBranches().add(new Node(false, "empty"));
-            return new Result(false, root);
-        }
-    }
-
-    private static Result BRACKET() {
-        int lexCode = 0;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-//            err("\"=\" expected");
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result EXP() {
-        int lexCode = 301;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-//            err("\"=\" expected");
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result rightPart() {
-        Node root = new Node(false,"right-part");
-
-        Result res = COMMA();
-        if(res.node != null)
-            root.getBranches().add(res.node);
-        if(!res.isSuccessful){
-            return new Result(false, root);
-        }
-
-        res = unsignedInteger();
-        if(res.isSuccessful){
-            root.getBranches().add(res.node);
-            return new Result(true, root);
-        }
-        else{
-            root.getBranches().add(new Node(false, "empty"));
-            return new Result(false, root);
-
-        }
-    }
-
-
-    private static Result unsignedInteger() {
-        Node node = new Node(false,"unsigned-integer");
-        l = readLex();
-
-        if((l == null) || !Lexemes.isConstant(l)){
-            return new Result(false, node);
-
-        }
-        else{
-            Node idValueNode = new Node(true, l.getCode().toString());
-            node.getBranches().add(idValueNode);
-            return new Result(true, node);
-        }
-    }
-
-    private static Result QUOTE() {
-        int lexCode = 5;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-    private static Result COMMA() {
-        int lexCode = 3;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-//            err("\"=\" expected");
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-    private static Result EQUALS() {
-        int lexCode = 7;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-//            err("\"=\" expected");
-            return new Result(false, null);
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result constantIdentifier() {
-        Node root = new Node(false,"constant-identifier");
-        Result res = identifierNoErr();
-        if(res.isSuccessful){
-            root.getBranches().add(res.node);
-            return new Result(true, root);
-        }
-        else{
-            return new Result(false, root);
-        }
-    }
-
-    private static Result identifier() {
-        Node node = new Node(false,"identifier");
-
-        l = readLex();
-
-        if((l == null) || !Lexemes.isIdentifier(l)){
-            err("Identifier expected");
-            return new Result(false, node);
-        }
-        else{
-            //OUT
-
-            Node idValueNode = new Node(true, l.getCode().toString());
-            node.getBranches().add(idValueNode);
-            return new Result(true, node);
-        }
-    }
-    private static Result identifierNoErr() {
-        Node node = new Node(false,"identifier");
-
-        l = readLex();
-
-        if((l == null) || !Lexemes.isIdentifier(l)){
-            return new Result(false, node);
-        }
-        else{
-            //OUT
-
-            Node idValueNode = new Node(true, l.getCode().toString());
-            node.getBranches().add(idValueNode);
-            return new Result(true, node);
-        }
-    }
-
-    private static Result CONST_KEY() {
-        int lexCode = 402;
-        l = readLex();
-
-        if(l == null){
-            return new Result(false, null); //empty file
-        }
-        else if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            return new Result(false, null);
-        }
-        else{
-            //OUT
-            Node node = new Node(true, Integer.toString(lexCode));
-            return new Result(true, node);
-        }
-    }
-
-    private static Result procedureIdentifier() {
-        Node node = new Node(false,"procedure-identifier");
-        Result res = identifier();
-        node.getBranches().add(res.node);
-        return new Result(res.isSuccessful, node);
-    }
 }

@@ -18,7 +18,7 @@ public class Main {
         //String path = inp();
 
         Tables.initTables();
-        Reader.init(FALSE3);
+        Reader.init(TEST);
         Lexer.run();
 
         Out.printErrors();
