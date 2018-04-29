@@ -19,7 +19,7 @@ public class Main {
         //String path = inp();
 //LEXER
         Tables.initTables();
-        Reader.init(TEST);
+        Reader.init(FALSE2);
         Lexer.run();
 //LEXER PRINT
         if(Tables.lexemes.isEmpty()){

@@ -22,7 +22,7 @@ public class Parser {
 
     public static void run(){
         signalProgram();
-        if(watch() != null){
+        if(errors.isEmpty() && watch() != null){
             readLex();
             err("Token after '.' found");
         }
