@@ -21,6 +21,7 @@ public class Main {
         Reader.init(TEST);
         Lexer.run();
 
+        System.out.println("LEXER");
         Out.printErrors();
         Out.printLexerResult();
 
@@ -30,6 +31,7 @@ public class Main {
         Parser.run();
         System.out.println("\n---------\nPARSER");
         ParserOut.outErrors();
+        System.out.println();
         ParserOut.treeOut();
     }
 

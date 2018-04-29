@@ -27,10 +27,7 @@ public class Parser {
     }
 
     private static Lexeme getNextLexItem(){
-        if (!lexIter.hasNext())
-            return null;
-        else
-            return lexIter.next();
+        return !lexIter.hasNext()? null:lexIter.next();
     }
     private static Lexeme watch(){
         if(buffer == null)
@@ -47,9 +44,6 @@ public class Parser {
     private static boolean nullLex(){
         return l == null;
     }
-    private static boolean eof(){
-        return (l == null) && (buffer == null) && (!lexIter.hasNext());
-    }
 
     private static boolean signalProgram(){
         tree =  new Node(false,"signal-program");
@@ -61,18 +55,7 @@ public class Parser {
     }
 
     private static boolean PROGRAM_KEY(Node parent){
-        readLex();
-        int lexCode = 401;
-
-        if(!l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\"PROGRAM\" expected");
-            return false;
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            parent.getBranches().add(node);
-            return true;
-        }
+        return key(parent,401, "PROGRAM");
     }
 
     private static boolean procedureIdentifier(Node parent) {
@@ -99,32 +82,10 @@ public class Parser {
         }
     }
     private static boolean SEMICOLON_KEY(Node parent) {
-        int lexCode = 4;
-        readLex();
-
-        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\";\" expected");
-            return false;
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            parent.getBranches().add(node);
-            return true;
-        }
+        return key(parent,4, ";");
     }
     private static boolean DOT_KEY(Node parent) {
-        int lexCode = 2;
-        readLex();
-
-        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\".\" expected");
-            return false;
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            parent.getBranches().add(node);
-            return true;
-        }
+        return key(parent,2, ".");
     }
     private static boolean block(Node parent) {
         Node node = new Node(false,"block");
@@ -169,19 +130,7 @@ public class Parser {
     }
 
     private static boolean EQUALS_KEY(Node parent) {
-        int lexCode = 7;
-        readLex();
-
-        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
-            err("\"=\" expected");
-            return false;
-        }
-
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            parent.getBranches().add(node);
-            return true;
-        }
+        return key(parent,7, "=");
     }
 
     private static boolean constant(Node parent) {
@@ -281,17 +230,7 @@ public class Parser {
     }
 
     private static boolean CONST_KEY(Node parent) {
-        readLex();
-        int lexCode = 402;
-
-        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
-            return false;
-        }
-        else{
-            Node node = new Node(true, Integer.toString(lexCode));
-            parent.getBranches().add(node);
-            return true;
-        }
+        return key(parent,402, "CONST");
     }
 
     private static boolean CONSTN_KEY(Node parent) {

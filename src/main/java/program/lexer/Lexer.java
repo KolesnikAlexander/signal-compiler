@@ -269,7 +269,7 @@ public class Lexer {
     private static void expD() {
         buffer+=c;
         c = Reader.read();
-        if(c.equals('E')){
+        if(c!= null && c.equals('E')){
             state = EXP_E;
         }
         else{
@@ -281,7 +281,7 @@ public class Lexer {
     private static void expE() {
         buffer+=c;
         c = Reader.read();
-        if(c.equals('X')){
+        if(c!= null && c.equals('X')){
             state = EXP_X;
         }
         else{
@@ -293,7 +293,7 @@ public class Lexer {
     private static void expX() {
         buffer+=c;
         c = Reader.read();
-        if(c.equals('P')){
+        if(c!= null && c.equals('P')){
             state = EXP_P;
         }
         else{
