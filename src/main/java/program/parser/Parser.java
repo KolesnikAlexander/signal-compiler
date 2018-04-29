@@ -193,6 +193,38 @@ public class Parser {
     private static boolean complexNumber(Node parent) {
         Node node = new Node(false, "complex-number");
         parent.getBranches().add(node);
+        return leftPart(node) && rightPart(node);
+    }
+
+    private static boolean leftPart(Node parent) {
+        Node node = new Node(false, "left-part");
+        parent.getBranches().add(node);
+        if (watch() == null || !Lexemes.isConstant(watch())){
+            node.getBranches().add(emptyNode);
+            return true;
+        }
+        return unsignedInteger(node);
+    }
+
+    private static boolean unsignedInteger(Node parent) {
+        Node node = new Node(false,"unsigned-integer");
+        parent.getBranches().add(node);
+        readLex();
+
+        if(nullLex() || !Lexemes.isConstant(l)){
+            err("Constant expected");
+            return false;
+        }
+        else{
+            Node idValueNode = new Node(true, l.getCode().toString());
+            node.getBranches().add(idValueNode);
+            return true;
+        }
+    }
+
+    private static boolean rightPart(Node parent) {
+        Node node = new Node(false, "right-part");
+        parent.getBranches().add(node);
         return true;
     }
 
@@ -232,15 +264,19 @@ public class Parser {
         return true;
     }
     private static boolean BEGIN_KEY(Node parent) {
-        return true;
+        return key(parent, 403, "BEGIN");
     }
 
     private static boolean statementsList(Node parent) {
+        Node statListNode = new Node(false, "statements-list");
+        parent.getBranches().add(statListNode);
+        statListNode.getBranches().add(emptyNode);
         return true;
     }
 
     private static boolean END_KEY(Node parent) {
-        return true;
+        return key(parent, 404, "END");
+
     }
     private static void err(String message){
         if (l == null){

@@ -10,6 +10,8 @@ public class Lexemes {
         return Tables.identifiers.containsKey(lexeme.getCode());
     }
     public static boolean isConstant(Lexeme lexeme){
+        if (lexeme == null)
+            return false;
         return Tables.constants.containsKey(lexeme.getCode());
     }
 }
