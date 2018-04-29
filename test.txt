@@ -1,5 +1,6 @@
-PROGRAM HELLO; CONST F = '2'; A =            ''; BEGIN END.
-CONST A = '5, 8';
- C='5, 89';
-BEGIN
-END.
+PROGRAM HELLO;
+    CONST A = '5, 8';
+     C='5, 89';
+     D='2 $EXP(123)';
+    BEGIN
+    END.

@@ -225,7 +225,41 @@ public class Parser {
     private static boolean rightPart(Node parent) {
         Node node = new Node(false, "right-part");
         parent.getBranches().add(node);
-        return true;
+        if(!nullLex() && new Lexeme(3, -1, -1).equals(watch())){
+            return rightPart1(node);
+        }
+        else if(!nullLex() && new Lexeme(301, -1, -1).equals(watch())){
+            return rightPart2(node);
+        }
+        else{
+            node.getBranches().add(emptyNode);
+            return true;
+        }
+    }
+
+    private static boolean rightPart1(Node parent) {
+        return COMMA_KEY(parent) && unsignedInteger(parent);
+    }
+    private static boolean rightPart2(Node parent) {
+        return EXP(parent) && OPEN_BRACKET(parent) &&
+                unsignedInteger(parent) && CLOSE_BRACKET(parent);
+    }
+
+
+    private static boolean EXP(Node parent) {
+        return key(parent, 301, "$EXP");
+    }
+
+    private static boolean OPEN_BRACKET(Node parent) {
+        return key(parent, 0, "(");
+    }
+
+    private static boolean CLOSE_BRACKET(Node parent) {
+        return key(parent, 1, ")");
+    }
+
+    private static boolean COMMA_KEY(Node parent) {
+        return key(parent, 3, ",");
     }
 
     private static boolean key(Node parent, int lexCode, String errMsg){
