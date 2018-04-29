@@ -3,11 +3,9 @@ package program.parser;
 import program.lexer.table.Error;
 import program.lexer.table.Lexeme;
 import program.lexer.table.Tables;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import static program.Out.tableCellByCode;
 
 public class Parser {
@@ -28,18 +26,18 @@ public class Parser {
             readLex();
             err("Token after '.' found");
         }
-
     }
 
     private static Lexeme getNextLexItem(){
         return !lexIter.hasNext()? null:lexIter.next();
     }
+
     private static Lexeme watch(){
         if(buffer == null)
             buffer = getNextLexItem();
         return buffer;
-
     }
+
     private static void readLex(){
         Lexeme lex = watch();
         buffer = null;
@@ -79,23 +77,23 @@ public class Parser {
             return false;
         }
         else{
-            //OUT
             Node idValueNode = new Node(true, l.getCode().toString());
             node.getBranches().add(idValueNode);
-
             return true;
         }
     }
+
     private static boolean SEMICOLON_KEY(Node parent) {
         return key(parent,4, ";");
     }
+
     private static boolean DOT_KEY(Node parent) {
         return key(parent,2, ".");
     }
+
     private static boolean block(Node parent) {
         Node node = new Node(false,"block");
         parent.getBranches().add(node);
-
         return declarations(node) && BEGIN_KEY(node) &&
                 statementsList(node) && END_KEY(node);
     }
@@ -254,8 +252,8 @@ public class Parser {
 
     private static boolean END_KEY(Node parent) {
         return key(parent, 404, "END");
-
     }
+
     private static void err(String message){
         if (l == null){
             Lexeme lexeme = Tables.lexemes.get(Tables.lexemes.size() - 1);
@@ -267,8 +265,4 @@ public class Parser {
         else
             errors.add(new Error(l.getLine(), l.getRow(), message));
     }
-
-
-
-
 }
