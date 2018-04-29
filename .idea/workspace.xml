@@ -3,22 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="669792f9-a2d8-4392-8e02-dbe5e2d7a625" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/parserTrue.txt" afterPath="$PROJECT_DIR$/parserTrue.txt" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/program/Main.java" afterPath="$PROJECT_DIR$/src/main/java/program/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/program/parser/Lexemes.java" afterPath="$PROJECT_DIR$/src/main/java/program/parser/Lexemes.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/program/parser/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/program/parser/Parser.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/program/parser/ParserOut.java" afterPath="$PROJECT_DIR$/src/main/java/program/parser/ParserOut.java" />
-      <change beforePath="$PROJECT_DIR$/target/SignalCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/program/Main.class" afterPath="$PROJECT_DIR$/target/classes/program/Main.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/program/parser/Lexemes.class" afterPath="$PROJECT_DIR$/target/classes/program/parser/Lexemes.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/program/parser/Parser.class" afterPath="$PROJECT_DIR$/target/classes/program/parser/Parser.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/program/parser/ParserOut.class" afterPath="$PROJECT_DIR$/target/classes/program/parser/ParserOut.class" />
-      <change beforePath="$PROJECT_DIR$/target/falseRes.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/falseTest.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/target/trueRes.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/trueTest.txt" afterPath="" />
       <change beforePath="$PROJECT_DIR$/test.txt" afterPath="$PROJECT_DIR$/test.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,7 +20,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/program/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="107">
               <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
               <folding />
             </state>
@@ -45,8 +30,8 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="159" column="79" lean-forward="false" selection-start-line="159" selection-start-column="79" selection-end-line="159" selection-end-column="79" />
+            <state relative-caret-position="1605">
+              <caret line="161" column="39" lean-forward="true" selection-start-line="161" selection-start-column="39" selection-end-line="161" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#623#624#0" expanded="true" />
@@ -55,35 +40,15 @@
                 <element signature="e#1123#1124#0" expanded="true" />
                 <element signature="e#1157#1158#0" expanded="true" />
                 <element signature="e#1235#1236#0" expanded="true" />
-                <element signature="e#5427#5428#0" expanded="true" />
-                <element signature="e#5454#5455#0" expanded="true" />
-                <element signature="e#5506#5507#0" expanded="true" />
-                <element signature="e#5533#5534#0" expanded="true" />
-                <element signature="e#5591#5592#0" expanded="true" />
-                <element signature="e#5618#5619#0" expanded="true" />
-                <element signature="e#5669#5670#0" expanded="true" />
-                <element signature="e#5696#5697#0" expanded="true" />
+                <element signature="e#6811#6812#0" expanded="true" />
+                <element signature="e#6838#6839#0" expanded="true" />
+                <element signature="e#6890#6891#0" expanded="true" />
+                <element signature="e#6917#6918#0" expanded="true" />
+                <element signature="e#6975#6976#0" expanded="true" />
+                <element signature="e#7002#7003#0" expanded="true" />
+                <element signature="e#7053#7054#0" expanded="true" />
+                <element signature="e#7080#7081#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Node.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lexemes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Lexemes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -91,8 +56,8 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../../IntellijProjects/SignalCompiler working/src/main/java/program/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="635" column="37" lean-forward="false" selection-start-line="635" selection-start-column="37" selection-end-line="635" selection-end-column="37" />
+            <state relative-caret-position="257">
+              <caret line="555" column="5" lean-forward="true" selection-start-line="555" selection-start-column="5" selection-end-line="555" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -101,8 +66,8 @@
       <file leaf-file-name="test.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+            <state relative-caret-position="60">
+              <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -136,6 +101,8 @@
       <find>CONST_KEY</find>
       <find>isIde</find>
       <find>SEMIC</find>
+      <find>_KEY</find>
+      <find>constantDec</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,8 +153,8 @@
         <option value="$PROJECT_DIR$/parserTrue.txt" />
         <option value="$PROJECT_DIR$/src/main/java/program/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/program/parser/Lexemes.java" />
-        <option value="$PROJECT_DIR$/test.txt" />
         <option value="$PROJECT_DIR$/src/main/java/program/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/test.txt" />
       </list>
     </option>
   </component>
@@ -208,8 +175,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-72" />
     <option name="y" value="27" />
-    <option name="width" value="1270" />
+    <option name="width" value="1260" />
     <option name="height" value="721" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -228,6 +196,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
@@ -276,8 +246,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -381,8 +349,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50591016" sideWeight="0.55078125" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3723404" sideWeight="0.44921875" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1734375" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39716312" sideWeight="0.44921875" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -639,7 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -655,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -663,7 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -671,7 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -679,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="16" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -687,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,18 +677,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/System.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="123" column="36" lean-forward="false" selection-start-line="123" selection-start-column="36" selection-end-line="123" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Lexemes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -741,32 +702,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../IntellijProjects/SignalCompiler working/src/main/java/program/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="635" column="37" lean-forward="false" selection-start-line="635" selection-start-column="37" selection-end-line="635" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Lexemes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        <state relative-caret-position="257">
+          <caret line="555" column="5" lean-forward="true" selection-start-line="555" selection-start-column="5" selection-end-line="555" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+        <state relative-caret-position="60">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="159" column="79" lean-forward="false" selection-start-line="159" selection-start-column="79" selection-end-line="159" selection-end-column="79" />
+        <state relative-caret-position="1605">
+          <caret line="161" column="39" lean-forward="true" selection-start-line="161" selection-start-column="39" selection-end-line="161" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#623#624#0" expanded="true" />
@@ -775,14 +736,14 @@
             <element signature="e#1123#1124#0" expanded="true" />
             <element signature="e#1157#1158#0" expanded="true" />
             <element signature="e#1235#1236#0" expanded="true" />
-            <element signature="e#5427#5428#0" expanded="true" />
-            <element signature="e#5454#5455#0" expanded="true" />
-            <element signature="e#5506#5507#0" expanded="true" />
-            <element signature="e#5533#5534#0" expanded="true" />
-            <element signature="e#5591#5592#0" expanded="true" />
-            <element signature="e#5618#5619#0" expanded="true" />
-            <element signature="e#5669#5670#0" expanded="true" />
-            <element signature="e#5696#5697#0" expanded="true" />
+            <element signature="e#6811#6812#0" expanded="true" />
+            <element signature="e#6838#6839#0" expanded="true" />
+            <element signature="e#6890#6891#0" expanded="true" />
+            <element signature="e#6917#6918#0" expanded="true" />
+            <element signature="e#6975#6976#0" expanded="true" />
+            <element signature="e#7002#7003#0" expanded="true" />
+            <element signature="e#7053#7054#0" expanded="true" />
+            <element signature="e#7080#7081#0" expanded="true" />
           </folding>
         </state>
       </provider>

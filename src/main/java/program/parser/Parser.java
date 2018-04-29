@@ -154,18 +154,64 @@ public class Parser {
             node.getBranches().add(emptyNode);
             return true;
         }
-        return constantDeclaration(node); // TODO: 28.04.18
+        return constantDeclaration(node) && constantDeclarationsList(node); // TODO: 28.04.18
     }
 
     private static boolean constantDeclaration(Node parent) { // TODO: 28.04.18
         Node node = new Node(false, "constant-declaration");
         parent.getBranches().add(node);
-        return constantIdentifier(node);
+        return constantIdentifier(node) && EQUALS_KEY(node) && constant(node) && SEMICOLON_KEY(node);
     }
 
     private static boolean constantIdentifier(Node parent) {
         Node node = new Node(false, "constant-identifier");
         return identifier(parent);
+    }
+
+    private static boolean EQUALS_KEY(Node parent) {
+        int lexCode = 7;
+        readLex();
+
+        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
+            err("\"=\" expected");
+            return false;
+        }
+
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            parent.getBranches().add(node);
+            return true;
+        }
+    }
+
+    private static boolean constant(Node parent) {
+        Node node = new Node(false, "constant");
+        parent.getBranches().add(node);
+        return QUOTE(node) && complexNumber(node) && QUOTE(node);
+    }
+
+    private static boolean complexNumber(Node parent) {
+        Node node = new Node(false, "complex-number");
+        parent.getBranches().add(node);
+        return true;
+    }
+
+    private static boolean key(Node parent, int lexCode, String errMsg){
+        readLex();
+
+        if(nullLex() || !l.equals(new Lexeme(lexCode, -1, -1))){
+            err("\""+errMsg+"\" expected");
+            return false;
+        }
+        else{
+            Node node = new Node(true, Integer.toString(lexCode));
+            parent.getBranches().add(node);
+            return true;
+        }
+    }
+    private static boolean QUOTE(Node parent) {
+        return key(parent,5,"'" );
+
     }
 
     private static boolean CONST_KEY(Node parent) {
