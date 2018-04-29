@@ -11,5 +11,5 @@ COMP2 = '5 $EXP(20)';
 COMP3=5$EXP(20);
 
 BEGIN
-	
-END. 
+
+END.

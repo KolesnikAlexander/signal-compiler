@@ -18,9 +18,6 @@ public class Node {
         this.branches = new LinkedList<>();
     }
 
-    public Node() {
-    }
-
     public boolean isTerminal() {
         return isTerminal;
     }

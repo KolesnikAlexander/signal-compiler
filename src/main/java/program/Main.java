@@ -1,5 +1,6 @@
 package program;
 
+import javafx.scene.control.Tab;
 import program.lexer.Lexer;
 import program.lexer.table.Tables;
 import program.parser.Parser;
@@ -16,19 +17,24 @@ public class Main {
 
     public static void main(String[] args) {
         //String path = inp();
-
+//LEXER
         Tables.initTables();
         Reader.init(TEST);
         Lexer.run();
+//LEXER PRINT
+        if(Tables.lexemes.isEmpty()){
+            System.out.println("Empty file");
+            return;
+        }
 
         System.out.println("LEXER");
         Out.printErrors();
         Out.printLexerResult();
-
+//PARSER
         if(Tables.errors.size() != 0)
             return;
-
         Parser.run();
+//PARSER PRINT
         System.out.println("\n---------\nPARSER");
         ParserOut.outErrors();
         System.out.println();

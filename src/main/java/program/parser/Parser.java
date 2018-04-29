@@ -24,6 +24,11 @@ public class Parser {
 
     public static void run(){
         signalProgram();
+        if(watch() != null){
+            readLex();
+            err("Token after '.' found");
+        }
+
     }
 
     private static Lexeme getNextLexItem(){
