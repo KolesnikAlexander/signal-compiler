@@ -131,7 +131,8 @@ public class Parser {
 
     private static boolean constantIdentifier(Node parent) {
         Node node = new Node(false, "constant-identifier");
-        return identifier(parent);
+        parent.getBranches().add(node);
+        return identifier(node);
     }
 
     private static boolean EQUALS_KEY(Node parent) {

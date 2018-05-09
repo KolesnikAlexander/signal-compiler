@@ -41,7 +41,7 @@ public class CodeGenerator {
     }
 
     private static void constantDeclaration(Node node) {
-        String id = regIdentifier(node.child("identifier"));
+        String id = regIdentifier(node.child("constant-identifier").child("identifier"));
         if(id == null){
             System.err.println("IDENTIFIER EXISTS!");
             return;

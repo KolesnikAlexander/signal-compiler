@@ -27,8 +27,7 @@ public class Main {
             System.out.println("Empty file");
             return;
         }
-
-        System.out.println("LEXER");
+        System.out.println("---------\nLEXER");
         Out.printErrors();
         Out.printLexerResult();
 //PARSER
@@ -40,15 +39,17 @@ public class Main {
         ParserOut.outErrors();
         System.out.println();
         ParserOut.treeOut();
-
-        System.out.println("==========================");
-
+//CODE GENERATOR
         if(!Parser.errors.isEmpty())
             return;
-        else{
-            CodeGenerator.run();
-            CodeGenOut.printListing();
-        }
+        CodeGenerator.run();
+//CODE GENERATOR PRINT
+        System.out.println("\n---------\nCODE GENERATOR");
+        System.out.println("Semantic errors: "+CodeGenerator.errors.size());
+        CodeGenOut.printListing();
+        System.out.println();
+        CodeGenOut.printCodeGenErrors();
+
     }
 
     private static String inp() {
