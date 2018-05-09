@@ -1,8 +1,10 @@
 package program.codeGen;
 
+import program.lexer.table.Error;
 import program.parser.Node;
 import program.parser.Parser;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class CodeGenerator {
     private static Node tree = Parser.tree;
     public static List<String> listing = new LinkedList<>();
     public static List<String> labels = new LinkedList<>();
+    public static List<Error> errors = new LinkedList<>();
     private static String segmentName;
     public static void run(){
         program(tree.child("program"));
@@ -64,7 +67,6 @@ public class CodeGenerator {
     }
 
     private static String unsignedInteger(Node node) {
-//        String id = node.firstChild().terminalStr();
         return node.firstChild().terminalStr();
     }
 
@@ -91,15 +93,20 @@ public class CodeGenerator {
 
     private static String regIdentifier(Node node){
         String id = node.firstChild().terminalStr();
-        if(labels.contains(id))
+        if(labels.contains(id)){
+            idExistsError(node);
             return null;
+
+        }
         else {
             labels.add(id);
             return id;
         }
     }
 
-    private static void segment(Node noe) {
+    private static void idExistsError(Node identifier){
+        Node val = identifier.firstChild();
+        errors.add(new Error(val.getLine(), val.getRow(),
+                "Identifier \'"+val.terminalStr()+"\' already exists"));
     }
-
 }

@@ -11,6 +11,8 @@ public class Node {
     private boolean isTerminal;
     private String value;
     private List<Node> branches;
+    private int line;
+    private int row;
 
     public Node(boolean isTerminal,String value) {
         this.value = value;
@@ -44,6 +46,22 @@ public class Node {
                 return node;
         }
         return null;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
     }
 
     public Node firstChild(){

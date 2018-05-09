@@ -78,6 +78,8 @@ public class Parser {
         }
         else{
             Node idValueNode = new Node(true, l.getCode().toString());
+            idValueNode.setLine(l.getLine());
+            idValueNode.setRow(l.getRow());
             node.getBranches().add(idValueNode);
             return true;
         }
