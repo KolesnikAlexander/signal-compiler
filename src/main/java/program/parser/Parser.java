@@ -6,7 +6,7 @@ import program.lexer.table.Tables;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import static program.Out.tableCellByCode;
+import static program.lexer.LexerOut.tableCellByCode;
 
 public class Parser {
     public static List<Error> errors = new ArrayList<>();

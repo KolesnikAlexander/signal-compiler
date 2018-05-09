@@ -4,11 +4,18 @@
     <list default="true" id="669792f9-a2d8-4392-8e02-dbe5e2d7a625" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/program/Main.java" afterPath="$PROJECT_DIR$/src/main/java/program/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/program/codeGen/CodeGenOut.java" afterPath="$PROJECT_DIR$/src/main/java/program/codeGen/CodeGenOut.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/program/codeGen/CodeGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/program/codeGen/CodeGenerator.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/program/Out.java" afterPath="$PROJECT_DIR$/src/main/java/program/lexer/LexerOut.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/program/Reader.java" afterPath="$PROJECT_DIR$/src/main/java/program/lexer/Reader.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/program/lexer/Lexer.java" afterPath="$PROJECT_DIR$/src/main/java/program/lexer/Lexer.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/program/parser/Node.java" afterPath="$PROJECT_DIR$/src/main/java/program/parser/Node.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/program/parser/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/program/parser/Parser.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/program/codeGen/CodeGenOut.class" afterPath="$PROJECT_DIR$/target/classes/program/codeGen/CodeGenOut.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/program/codeGen/CodeGenerator.class" afterPath="$PROJECT_DIR$/target/classes/program/codeGen/CodeGenerator.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/Main.class" afterPath="$PROJECT_DIR$/target/classes/program/Main.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/Out.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/Reader.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/lexer/Lexer$1.class" afterPath="$PROJECT_DIR$/target/classes/program/lexer/Lexer$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/lexer/Lexer$State.class" afterPath="$PROJECT_DIR$/target/classes/program/lexer/Lexer$State.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/lexer/Lexer.class" afterPath="$PROJECT_DIR$/target/classes/program/lexer/Lexer.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/program/parser/Node.class" afterPath="$PROJECT_DIR$/target/classes/program/parser/Node.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/program/parser/Parser.class" afterPath="$PROJECT_DIR$/target/classes/program/parser/Parser.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/program/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="42" column="36" lean-forward="true" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
+            <state relative-caret-position="435">
+              <caret line="38" column="14" lean-forward="true" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -36,19 +43,19 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Node.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+              <caret line="48" column="26" lean-forward="false" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
               <folding>
-                <element signature="e#1092#1093#0" expanded="true" />
-                <element signature="e#1129#1130#0" expanded="true" />
-                <element signature="e#1161#1162#0" expanded="true" />
-                <element signature="e#1188#1189#0" expanded="true" />
-                <element signature="e#1214#1215#0" expanded="true" />
-                <element signature="e#1249#1250#0" expanded="true" />
-                <element signature="e#1279#1280#0" expanded="true" />
-                <element signature="e#1310#1311#0" expanded="true" />
-                <element signature="e#1394#1395#0" expanded="true" />
-                <element signature="e#1428#1429#0" expanded="true" />
-                <element signature="e#1507#1508#0" expanded="true" />
+                <element signature="e#1064#1065#0" expanded="true" />
+                <element signature="e#1101#1102#0" expanded="true" />
+                <element signature="e#1133#1134#0" expanded="true" />
+                <element signature="e#1160#1161#0" expanded="true" />
+                <element signature="e#1186#1187#0" expanded="true" />
+                <element signature="e#1221#1222#0" expanded="true" />
+                <element signature="e#1251#1252#0" expanded="true" />
+                <element signature="e#1282#1283#0" expanded="true" />
+                <element signature="e#1366#1367#0" expanded="true" />
+                <element signature="e#1400#1401#0" expanded="true" />
+                <element signature="e#1479#1480#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,12 +80,33 @@
       <file leaf-file-name="ParserOut.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/ParserOut.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+            <state relative-caret-position="30">
+              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#415#416#0" expanded="true" />
                 <element signature="e#449#450#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LexerOut.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/program/lexer/LexerOut.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/program/lexer/Reader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,54 +131,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="1995">
               <caret line="133" column="39" lean-forward="false" selection-start-line="133" selection-start-column="39" selection-end-line="133" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#821#822#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#1165#1166#0" expanded="true" />
-                <element signature="e#1197#1198#0" expanded="true" />
-                <element signature="e#1594#1595#0" expanded="true" />
-                <element signature="e#1643#1644#0" expanded="true" />
-                <element signature="e#2458#2459#0" expanded="true" />
-                <element signature="e#2499#2500#0" expanded="true" />
-                <element signature="e#2550#2551#0" expanded="true" />
-                <element signature="e#2591#2592#0" expanded="true" />
-                <element signature="e#4323#4324#0" expanded="true" />
-                <element signature="e#4364#4365#0" expanded="true" />
-                <element signature="e#6119#6120#0" expanded="true" />
-                <element signature="e#6186#6187#0" expanded="true" />
-                <element signature="e#6413#6414#0" expanded="true" />
-                <element signature="e#6460#6461#0" expanded="true" />
-                <element signature="e#6516#6517#0" expanded="true" />
-                <element signature="e#6558#6559#0" expanded="true" />
-                <element signature="e#6615#6616#0" expanded="true" />
-                <element signature="e#6657#6658#0" expanded="true" />
-                <element signature="e#6710#6711#0" expanded="true" />
-                <element signature="e#6752#6753#0" expanded="true" />
-                <element signature="e#7300#7301#0" expanded="true" />
-                <element signature="e#7347#7348#0" expanded="true" />
-                <element signature="e#7401#7402#0" expanded="true" />
-                <element signature="e#7428#7429#0" expanded="true" />
-                <element signature="e#7480#7481#0" expanded="true" />
-                <element signature="e#7528#7529#0" expanded="true" />
-                <element signature="e#7827#7828#0" expanded="true" />
-                <element signature="e#7873#7874#0" expanded="true" />
+                <element signature="e#832#833#0" expanded="true" />
+                <element signature="e#894#895#0" expanded="true" />
+                <element signature="e#1176#1177#0" expanded="true" />
+                <element signature="e#1208#1209#0" expanded="true" />
+                <element signature="e#1605#1606#0" expanded="true" />
+                <element signature="e#1654#1655#0" expanded="true" />
+                <element signature="e#2469#2470#0" expanded="true" />
+                <element signature="e#2510#2511#0" expanded="true" />
+                <element signature="e#2561#2562#0" expanded="true" />
+                <element signature="e#2602#2603#0" expanded="true" />
+                <element signature="e#4334#4335#0" expanded="true" />
+                <element signature="e#4375#4376#0" expanded="true" />
+                <element signature="e#6130#6131#0" expanded="true" />
+                <element signature="e#6197#6198#0" expanded="true" />
+                <element signature="e#6424#6425#0" expanded="true" />
+                <element signature="e#6471#6472#0" expanded="true" />
+                <element signature="e#6527#6528#0" expanded="true" />
+                <element signature="e#6569#6570#0" expanded="true" />
+                <element signature="e#6626#6627#0" expanded="true" />
+                <element signature="e#6668#6669#0" expanded="true" />
+                <element signature="e#6721#6722#0" expanded="true" />
+                <element signature="e#6763#6764#0" expanded="true" />
+                <element signature="e#7311#7312#0" expanded="true" />
+                <element signature="e#7358#7359#0" expanded="true" />
+                <element signature="e#7412#7413#0" expanded="true" />
+                <element signature="e#7439#7440#0" expanded="true" />
+                <element signature="e#7491#7492#0" expanded="true" />
+                <element signature="e#7539#7540#0" expanded="true" />
+                <element signature="e#7838#7839#0" expanded="true" />
+                <element signature="e#7884#7885#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="trueTest.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trueTest.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -160,16 +178,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parserFalse1.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parserFalse1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -271,6 +279,8 @@
         <option value="$PROJECT_DIR$/parserTrue.txt" />
         <option value="$PROJECT_DIR$/src/main/java/program/codeGen/CodeGenOut.java" />
         <option value="$PROJECT_DIR$/src/main/java/program/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/program/lexer/Out.java" />
+        <option value="$PROJECT_DIR$/src/main/java/program/lexer/Reader.java" />
       </list>
     </option>
   </component>
@@ -336,15 +346,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="program" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="signal-compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="signal-compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="program" type="462c0819:PsiDirectoryNode" />
-              <item name="codeGen" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="signal-compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -467,7 +468,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50591016" sideWeight="0.55078125" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1734375" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27541372" sideWeight="0.44921875" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28723404" sideWeight="0.44921875" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -554,7 +555,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/Reader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/lexer/Reader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
@@ -611,14 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/Reader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,14 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/Out.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="91" column="23" lean-forward="false" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -794,62 +779,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/ParserOut.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding>
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parserTrue.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="133" column="39" lean-forward="false" selection-start-line="133" selection-start-column="39" selection-end-line="133" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#821#822#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
-            <element signature="e#1197#1198#0" expanded="true" />
-            <element signature="e#1594#1595#0" expanded="true" />
-            <element signature="e#1643#1644#0" expanded="true" />
-            <element signature="e#2458#2459#0" expanded="true" />
-            <element signature="e#2499#2500#0" expanded="true" />
-            <element signature="e#2550#2551#0" expanded="true" />
-            <element signature="e#2591#2592#0" expanded="true" />
-            <element signature="e#4323#4324#0" expanded="true" />
-            <element signature="e#4364#4365#0" expanded="true" />
-            <element signature="e#6119#6120#0" expanded="true" />
-            <element signature="e#6186#6187#0" expanded="true" />
-            <element signature="e#6413#6414#0" expanded="true" />
-            <element signature="e#6460#6461#0" expanded="true" />
-            <element signature="e#6516#6517#0" expanded="true" />
-            <element signature="e#6558#6559#0" expanded="true" />
-            <element signature="e#6615#6616#0" expanded="true" />
-            <element signature="e#6657#6658#0" expanded="true" />
-            <element signature="e#6710#6711#0" expanded="true" />
-            <element signature="e#6752#6753#0" expanded="true" />
-            <element signature="e#7300#7301#0" expanded="true" />
-            <element signature="e#7347#7348#0" expanded="true" />
-            <element signature="e#7401#7402#0" expanded="true" />
-            <element signature="e#7428#7429#0" expanded="true" />
-            <element signature="e#7480#7481#0" expanded="true" />
-            <element signature="e#7528#7529#0" expanded="true" />
-            <element signature="e#7827#7828#0" expanded="true" />
-            <element signature="e#7873#7874#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -867,26 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-          <folding>
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#1129#1130#0" expanded="true" />
-            <element signature="e#1161#1162#0" expanded="true" />
-            <element signature="e#1188#1189#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#1279#1280#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-            <element signature="e#1394#1395#0" expanded="true" />
-            <element signature="e#1428#1429#0" expanded="true" />
-            <element signature="e#1507#1508#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/program/codeGen/CodeGenOut.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -895,11 +809,99 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="48" column="26" lean-forward="false" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+          <folding>
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#1101#1102#0" expanded="true" />
+            <element signature="e#1133#1134#0" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1186#1187#0" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1282#1283#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1400#1401#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/program/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="42" column="36" lean-forward="true" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
+        <state relative-caret-position="435">
+          <caret line="38" column="14" lean-forward="true" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/ParserOut.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#449#450#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/lexer/LexerOut.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/lexer/Reader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/program/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="133" column="39" lean-forward="false" selection-start-line="133" selection-start-column="39" selection-end-line="133" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#832#833#0" expanded="true" />
+            <element signature="e#894#895#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1208#1209#0" expanded="true" />
+            <element signature="e#1605#1606#0" expanded="true" />
+            <element signature="e#1654#1655#0" expanded="true" />
+            <element signature="e#2469#2470#0" expanded="true" />
+            <element signature="e#2510#2511#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
+            <element signature="e#2602#2603#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <element signature="e#4375#4376#0" expanded="true" />
+            <element signature="e#6130#6131#0" expanded="true" />
+            <element signature="e#6197#6198#0" expanded="true" />
+            <element signature="e#6424#6425#0" expanded="true" />
+            <element signature="e#6471#6472#0" expanded="true" />
+            <element signature="e#6527#6528#0" expanded="true" />
+            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6626#6627#0" expanded="true" />
+            <element signature="e#6668#6669#0" expanded="true" />
+            <element signature="e#6721#6722#0" expanded="true" />
+            <element signature="e#6763#6764#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7358#7359#0" expanded="true" />
+            <element signature="e#7412#7413#0" expanded="true" />
+            <element signature="e#7439#7440#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7539#7540#0" expanded="true" />
+            <element signature="e#7838#7839#0" expanded="true" />
+            <element signature="e#7884#7885#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

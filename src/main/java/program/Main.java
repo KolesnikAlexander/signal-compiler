@@ -3,6 +3,8 @@ package program;
 import program.codeGen.CodeGenOut;
 import program.codeGen.CodeGenerator;
 import program.lexer.Lexer;
+import program.lexer.LexerOut;
+import program.lexer.Reader;
 import program.lexer.table.Tables;
 import program.parser.Parser;
 import program.parser.ParserOut;
@@ -28,8 +30,8 @@ public class Main {
             return;
         }
         System.out.println("---------\nLEXER");
-        Out.printErrors();
-        Out.printLexerResult();
+        LexerOut.printErrors();
+        LexerOut.printLexerResult();
 //PARSER
         if(Tables.errors.size() != 0)
             return;

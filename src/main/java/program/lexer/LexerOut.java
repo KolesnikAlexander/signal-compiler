@@ -1,4 +1,4 @@
-package program;
+package program.lexer;
 
 import program.lexer.table.Error;
 import program.lexer.table.Lexeme;
@@ -8,7 +8,7 @@ import program.lexer.table.Tables;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Out {
+public class LexerOut {
     public static void printLexerResult() {
         System.out.println("LEXEMES: "+"\n---------------");
         printLexemesTable();

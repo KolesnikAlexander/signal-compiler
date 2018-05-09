@@ -1,4 +1,4 @@
-package program;
+package program.lexer;
 
 import java.io.*;
 

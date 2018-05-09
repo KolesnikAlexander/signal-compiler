@@ -1,6 +1,5 @@
 package program.lexer;
 
-import program.Reader;
 import program.lexer.table.Error;
 import program.lexer.table.Lexeme;
 import program.lexer.table.TableCell;

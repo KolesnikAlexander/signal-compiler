@@ -1,11 +1,9 @@
 package program.parser;
 
-import program.lexer.table.TableCell;
-
 import java.util.LinkedList;
 import java.util.List;
 
-import static program.Out.tableCellByCode;
+import static program.lexer.LexerOut.tableCellByCode;
 
 public class Node {
     private boolean isTerminal;
