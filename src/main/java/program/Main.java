@@ -1,6 +1,7 @@
 package program;
 
-import javafx.scene.control.Tab;
+import program.codeGen.CodeGenOut;
+import program.codeGen.CodeGenerator;
 import program.lexer.Lexer;
 import program.lexer.table.Tables;
 import program.parser.Parser;
@@ -19,7 +20,7 @@ public class Main {
         //String path = inp();
 //LEXER
         Tables.initTables();
-        Reader.init(FALSE2);
+        Reader.init(TRUE);
         Lexer.run();
 //LEXER PRINT
         if(Tables.lexemes.isEmpty()){
@@ -39,6 +40,15 @@ public class Main {
         ParserOut.outErrors();
         System.out.println();
         ParserOut.treeOut();
+
+        System.out.println("==========================");
+
+        if(!Parser.errors.isEmpty())
+            return;
+        else{
+            CodeGenerator.run();
+            CodeGenOut.printListing();
+        }
     }
 
     private static String inp() {

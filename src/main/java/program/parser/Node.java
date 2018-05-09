@@ -38,6 +38,22 @@ public class Node {
         return branches;
     }
 
+    public Node child(String name){
+        for (Node node : this.getBranches()) {
+            if (node.getValue().equals(name))
+                return node;
+        }
+        return null;
+    }
+
+    public Node firstChild(){
+        return this.getBranches().isEmpty()? null: this.getBranches().get(0);
+    }
+
+    public String terminalStr(){
+        return tableCellByCode(Integer.parseInt(this.value)).getValue();
+    }
+
     @Override
     public String toString() {
 
